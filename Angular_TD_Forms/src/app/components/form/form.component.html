@@ -1,0 +1,101 @@
+<div class="container">
+    <h1>user settings 2</h1>
+    <h2>submit validation </h2>
+    <form #form="ngForm" (ngSubmit)="onSubmit(form)">
+        <div class="form-group">
+            <label for="name">Name</label>
+            <input minlength="3" pattern="B.*" required type="text" id="name" name="name" [(ngModel)]="userSetting.name"
+                pattern="B.*" required #name="ngModel" class="form-control"
+                [class.field-error]="form.submitted && name.invalid" />
+
+            <span [hidden]="!form.submitted || name.valid" class="text-danger">Please enter valid name</span>
+        </div>
+        <div>
+            <button type="button" class="btn btn-primary" [(ngModel)]="singleModel" btnCheckbox btnCheckboxTrue="on"
+                name="singleModel" btnCheckboxFalse="off">
+                {{singleModel}}
+            </button>
+        </div>
+        <div class="form-check form-group">
+            <input class="form-check-input" type="checkbox" [(ngModel)]="userSetting.emailSpecialOffers"
+                name="emailSpecialOffers" value="" id="defaultCheck1" />
+            <label class="form-check-label" for="defaultCheck1">
+                Email Special Offers
+            </label>
+        </div>
+
+        <div class="form-group">
+            <h5>User Interface Style</h5>
+            <h6>ngx bootstrap</h6>
+            <div class="btn-group">
+                <label class="btn btn-primary" [(ngModel)]="userSetting.interfaceStyle" btnRadio="Light" tabindex="0"
+                    name="interfaceStyle" role="button">Light</label>
+                <label class="btn btn-primary" [(ngModel)]="userSetting.interfaceStyle" btnRadio="Medium" tabindex="0"
+                    name="interfaceStyle" role="button">Medium</label>
+                <label class="btn btn-primary" [(ngModel)]="userSetting.interfaceStyle" btnRadio="Dark" tabindex="0"
+                    name="interfaceStyle" role="button">Dark</label>
+            </div>
+
+            <!-- <div class="form-check">
+                <input class="form-check-input" type="radio" [(ngModel)]="userSetting.interfaceStyle"
+                    name="interfaceStyle" id="interfaceStyle1" value="light" />
+                <label class="form-check-label" for="interfaceStyle1"> </label>
+            </div>
+            <div class="form-check">
+                <input class="form-check-input" type="radio" [(ngModel)]="userSetting.interfaceStyle"
+                    name="interfaceStyle" id="interfaceStyle2" value="medium" />
+                <label class="form-check-label" for="interfaceStyle2"> </label>
+            </div>
+            <div class="form-check disabled">
+                <input class="form-check-input" type="radio" [(ngModel)]="userSetting.interfaceStyle"
+                    name="interfaceStyle" id="interfaceStyle3" value="dark" />
+                <label class="form-check-label" for="interfaceStyle3"> </label>
+            </div> -->
+        </div>
+
+        <div class="form-group">
+            <label for="Subscribtion">Subscribtion type: </label>
+            <!-- [class.field-error]="sub.valid && !form.submitted"  -->
+            <!-- [ngClass]="{'field-error': sub.valid && !form.submitted}" -->
+            <select required #sub="ngModel" class="form-control" [(ngModel)]="userSetting.subscriptionType"
+                [class.field-error]="form.submitted && sub.invalid" name="subscriptionType" id="Subscribtion">
+                <option *ngFor="let type of subscriptionTypes">{{type}}</option>
+
+            </select>
+            <span [hidden]="sub.valid || !form.submitted" class="text-danger">Please Choose Subscribtion</span>
+        </div>
+        <div class="form-group">
+            <label for="notes">Notes</label>
+            <textarea required (blur)="onBlure(notes)" #notes="ngModel" rows="3" [(ngModel)]="userSetting.notes"
+                name="notes" id="notes" class="form-control" aria-label="With textarea"></textarea>
+        </div>
+        <input type="date" name="" id="">
+
+        <div class="col-xs-12 col-12 col-md-4 form-group mb-3">
+            <label for="startDate">Start Date</label>
+            <input type="text" placeholder="Start Date" class="form-control" bsDatepicker [(ngModel)]="Date" name="Date"
+                id="startDate" [bsConfig]="{ isAnimated: true }">
+        </div>
+
+        <div>
+            <timepicker [(ngModel)]="mytime" name="mytime" [meridians]="meridians"></timepicker>
+        </div>
+        <pre [hidden]="!error">
+            <h3 class="text-danger"> {{errorMsg |json}}</h3>
+        </pre>
+        <button type="submit" class="btn btn-primary">Send</button>
+    </form>
+</div>
+
+<div>
+    <rating style="color: gold; font-size: 2rem" [(ngModel)]="rate" [max]="max" [readonly]="isReadonly"
+        (onHover)="hoveringOver($event)" name="rate" (onLeave)="resetStar()" [titles]="['one','two','three']"></rating>
+</div>
+<h1>
+    {{Date |date}}
+    <br>
+    {{mytime}}
+    <br>
+    rating: {{rate}}
+    <pre>{{ userSetting | json }}</pre>
+</h1>

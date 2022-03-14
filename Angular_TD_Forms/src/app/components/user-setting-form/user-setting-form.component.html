@@ -1,0 +1,100 @@
+<div class="container">
+    <h1>user settings 1</h1>
+    <h2>native html validation using ngModel classes & properies</h2>
+    <form #form="ngForm" ngNativeValidate>
+
+        <div class="form-group">
+            <label for="name">Name</label>
+            <input minlength="3" pattern="B.*" required type="text" id="name" name="name" [(ngModel)]="userSetting.name"
+                pattern="B.*" required #nameField="ngModel" class="form-control">
+
+            <span [hidden]="nameField.valid || nameField.untouched" class="text-danger">Please enter valid
+                name</span>
+
+
+            <!-- <input type="text" id="name" name="name" [(ngModel)]="userSetting.name" class="form-control" required
+                minlength="3" pattern="B.*" #classTest>
+            <h3>
+                to see the classes of input:
+                <pre>  {{classTest.className}} </pre>
+            </h3>
+             -->
+
+
+            <!-- <input minlength="3" pattern="B.*" required type="text" id="name" name="name" [(ngModel)]="userSetting.name"
+                #propertyTest="ngModel" class="form-control">
+            <h4>
+                <pre>
+    <code>   valid: {{propertyTest.valid }}</code>
+    <code> invalid: {{propertyTest.invalid }}</code>
+    <code> touched: {{propertyTest.touched }}</code>
+  <code> untouched: {{propertyTest.untouched }}</code>
+   <code> pristine: {{propertyTest.pristine }}</code>
+      <code> dirty: {{propertyTest.dirty }}</code>
+</pre>
+            </h4> -->
+
+
+        </div>
+
+        <div class="form-check form-group">
+            <input class="form-check-input" type="checkbox" [(ngModel)]="userSetting.emailSpecialOffers"
+                name="emailSpecialOffers" value="" id="defaultCheck1">
+            <label class="form-check-label" for="defaultCheck1">
+                Email Special Offers
+            </label>
+        </div>
+
+        <div class="form-group">
+            <h5>User Interface Style</h5>
+            <div class="form-check">
+                <input class="form-check-input" type="radio" [(ngModel)]="userSetting.interfaceStyle"
+                    name="interfaceStyle" id="interfaceStyle1" value="light">
+                <label class="form-check-label" for="interfaceStyle1">
+                    Light
+                </label>
+            </div>
+            <div class="form-check">
+                <input class="form-check-input" type="radio" [(ngModel)]="userSetting.interfaceStyle"
+                    name="interfaceStyle" id="interfaceStyle2" value="medium">
+                <label class="form-check-label" for="interfaceStyle2">
+                    Medium
+                </label>
+            </div>
+            <div class="form-check disabled">
+                <input class="form-check-input" type="radio" [(ngModel)]="userSetting.interfaceStyle"
+                    name="interfaceStyle" id="interfaceStyle3" value="dark">
+                <label class="form-check-label" for="interfaceStyle3">
+                    Dark
+                </label>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="Subscribtion">Subscribtion type: </label>
+            <select class="form-control" [(ngModel)]="userSetting.subscriptionType" name="subscriptionType"
+                id="Subscribtion">
+                <option>monthly</option>
+                <option>annual</option>
+                <option>lifeTime</option>
+
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="notes">Notes</label>
+            <textarea rows="3" [(ngModel)]="userSetting.notes" name="notes" id="notes" class="form-control"
+                aria-label="With textarea"></textarea>
+        </div>
+
+        <button type="submit" class="btn btn-primary">Send</button>
+    </form>
+</div>
+
+
+<h1>
+    <pre>{{userSetting |json}}</pre>
+</h1>
+
+<!-- <h1>
+    <pre>{{form.value |json}}</pre>
+</h1> -->

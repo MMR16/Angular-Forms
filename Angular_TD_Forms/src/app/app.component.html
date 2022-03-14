@@ -1,0 +1,16 @@
+<!-- <app-user-setting-form></app-user-setting-form> -->
+<nav class="nav justify-content-center">
+    <ul class="nav nav-pills">
+        <li class="nav-item">
+            <a class="nav-link" [routerLinkActiveOptions]="{ exact: true }" routerLinkActive="active"
+                routerLink="firstForm">form 1</a>
+        </li>
+
+        <li class="nav-item">
+            <a class="nav-link" [routerLinkActiveOptions]="{ exact: true }" routerLinkActive="active"
+                routerLink="secondForm">form 2</a>
+        </li>
+    </ul>
+</nav>
+
+<router-outlet></router-outlet>
